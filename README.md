@@ -204,3 +204,4 @@ Returns score, status, reasons, recommendations
         ↓
 React shows full analysis panel
 ```
+"# wifi_detector" 
