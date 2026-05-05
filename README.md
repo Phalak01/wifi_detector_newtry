@@ -1,4 +1,5 @@
-# WiFi Threat Analyzer — Complete Setup Guide
+# WiFi Detector
+ — Complete Setup Guide
 
 ## Project Structure
 ```

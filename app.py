@@ -4,16 +4,22 @@
 # Run this file to start the backend:  python app.py
 # ─────────────────────────────────────────────────────────────────
 
-from flask import Flask
-from flask_cors import CORS
-from flask_jwt_extended import JWTManager
+
+
+
 import sqlite3, os
 
-app = Flask(__name__)
+import streamlit as st
 
-@app.route('/')
-def home():
-    return "Backend is running 🚀"
+st.title("📶 WiFi Detector")
+
+st.success("Backend is running 🚀")
+
+st.write("This is your deployed Streamlit app")
+
+# Button example
+if st.button("Check Status"):
+    st.write("App is working fine ✅")
 
 # ── Config ────────────────────────────────────────────────────────
 app.config["JWT_SECRET_KEY"]          = "wifi-threat-secret-2024-change-in-prod"
@@ -57,4 +63,5 @@ if __name__ == "__main__":
     print("  URL : http://localhost:5000")
     print("  Docs: GET /status to verify")
     print("="*52 + "\n")
-    app.run(debug=True, port=5000)
+    if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
