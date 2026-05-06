@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'http://localhost:5000' })
+const api = axios.create({ baseURL: 'https://wifi-detector-newtry.onrender.com' })
 
 // Attach token automatically to every request
 api.interceptors.request.use(cfg => {
