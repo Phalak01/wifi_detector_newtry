@@ -1,12 +1,10 @@
 # backend/app.py
-# ─────────────────────────────────────────────────────────────────
-# Main Flask entry point (Production Ready for Render)
-# ─────────────────────────────────────────────────────────────────
 
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-import sqlite3, os
+import sqlite3
+import os
 
 app = Flask(__name__)
 
@@ -17,7 +15,7 @@ app.config["JWT_SECRET_KEY"] = os.environ.get(
 )
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = False
 
-# ── CORS (Allow all origins for deployed frontend) ────────────────
+# ── CORS: allow deployed frontend also ────────────────────────────
 CORS(app)
 
 jwt = JWTManager(app)
@@ -45,24 +43,24 @@ def init_db():
     conn.close()
     print("✓ Database ready (database.db)")
 
-# ── Health Check Route (important for Render) ─────────────────────
 @app.route("/")
 def home():
-    return {"message": "WiFi Threat Analyzer API is live 🚀"}
+    return {"message": "WiFi Threat Analyzer API is live"}
 
 @app.route("/status")
 def status():
-    return {"status": "online", "message": "Backend running"}
+    return {"status": "online", "message": "WiFi Threat Analyzer backend running"}
 
-# ── Run App (Render compatible) ───────────────────────────────────
+# IMPORTANT: this runs on Render/Gunicorn too
+init_db()
+
 if __name__ == "__main__":
-    init_db()
-
     port = int(os.environ.get("PORT", 5000))
 
-    print("\n" + "="*52)
+    print("\n" + "=" * 52)
     print("  WiFi Threat Analyzer — Backend API")
-    print(f"  Running on port: {port}")
-    print("="*52 + "\n")
+    print(f"  URL : http://localhost:{port}")
+    print("  Docs: GET /status to verify")
+    print("=" * 52 + "\n")
 
     app.run(host="0.0.0.0", port=port)
